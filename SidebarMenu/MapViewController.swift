@@ -11,10 +11,15 @@ import UIKit
 class MapViewController: UIViewController {
     @IBOutlet weak var menuButton:UIBarButtonItem!
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        if self.revealViewController() != nil
+        {
+            menuButton.target = self.revealViewController()
+            menuButton.action = "revealToggle:"
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
     }
 
     override func didReceiveMemoryWarning() {
